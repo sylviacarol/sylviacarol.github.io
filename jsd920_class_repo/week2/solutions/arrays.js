@@ -143,7 +143,7 @@ console.log("")
 
  /** - BONUS 3
   * Using the array of [1,2,3,1,2], determine if any one value is the sum of the values
-  * before and after it's index position. Store the index & index value in bonus3.   
+  * before and after it's index position. Store the index of the value in bonus3.   
   * HINTS: 
   * - the .slice() method can be used to disect an array
   * - the .reduce() method can be used to sum all the values in an array
@@ -151,10 +151,12 @@ console.log("")
  var arr = [1,2,3,1,2]
  var mid = 1
  var left,right
- for(i = 0; i < arr.length-2;i++){
-  left = arr.slice(0,mid).reduce(function(a,b){return a+b })
-  right = arr.slice(++mid).reduce(function(a,b){return a+b })
-  if( left == right ) { console.log("we have a winner: ", left, right) }
- }
+ arr.forEach(function(d,i){
+  if(mid != arr.length-1){
+    left = arr.slice(0,mid).reduce(function(a,b){return a+b });
+    right = arr.slice(mid+=1).reduce(function(a,b){return a+b })
+    if( left == right ) { console.log("we have a winner at index position:", mid) }
+  }
+ })
 
 
