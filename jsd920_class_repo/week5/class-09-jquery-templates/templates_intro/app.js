@@ -48,25 +48,21 @@ var presidentObject = {
 }
 
 
-var titleObject = {
-    title: 'Presidents',
-    description: 'A JSD Project'
-};
-
 // STEP 1: GRAB THE HANDLEBARS HTML TEMPLATE
-
-var source = $('#title-template').html();
+// (from the script tag in the html file)
+var source = $('#presidentTemplate').html(); 
 
 // STEP 2: COMPILE THE TEMPLATE
-
-var template = Handlebars.compile(source);
-
+//(read the template created in the html file)
+var template = Handlebars.compile(source); 
 
 //STEP 3: PASS COMPILE THE OBJECT
-
-var titleTemplate = template(titleObject);
+//(Handlebars expects an object)
+//connects the template with the object
+var presidentTemplate = template(presidentObject); 
 
 // STEP 4: APPEND 
-$('.post-full').append(titleTemplate);
+//insert the data in the page
+$('#jquery-list').append(presidentTemplate); 
 
 

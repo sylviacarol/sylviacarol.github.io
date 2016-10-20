@@ -2,9 +2,15 @@
 <html>
 	<head></head>
 
-	<script id="title-template" type="text/x-handlebars-template">
+	<!-- <script id="title-template" type="text/x-handlebars-template">
 		<h1>{{title}}</h1>
 		<p>{{description}}</p>
+	</script> -->
+
+	<script id="presidentTemplate" type="text/x-handlebars-template">
+		{{#each presidents}}
+		    <option>{{this}}</option>
+		{{/each}}
 	</script>
 	
 
@@ -13,6 +19,7 @@
 
 		<h4>jQuery List</h4>
 		<select id="jquery-list">
+
 			<!-- <option value="">Washington</option>
 			<option value="">Adams</option>
 			<option value="">Jefferson</option>
