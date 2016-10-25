@@ -9,7 +9,7 @@ Open Weather Map Instructions:
 	- Hint: search the docs for "units format"
 - First, print the response to the console, then, using the API's response, print the following data to #nyc-weather:
 	- The current "temp"
-	- The current "hummidity"
+	- The current "humidity"
 	- The current wind "speed"
 
 2)
@@ -30,11 +30,102 @@ Open Weather Map Instructions:
 - Instead of changing the background color based on temperature, change the background to first result the flicker API returns for the city
 - Ex: user enters "Brooklyn" - search flicker API for "Brooklyn" and use the first image
 
+
+http://openweathermap.org/current
 */
 
 
 $(document).ready(function () {
-  var apiKey = '19ab861f15cfd2e8216a3be1ed615598';
-  var weatherUrl = '';
-});
+	
+//////// 1)
 
+	var apiKey = '5dd2b0638ed32a2f8a08c734d118e79d';
+	var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?appid=' + apiKey + '&units=imperial&q=';
+	var weatherNYC = 'http://api.openweathermap.org/data/2.5/weather?q=newyork&units=imperial&APPID=5dd2b0638ed32a2f8a08c734d118e79d'
+
+
+	$.get(weatherNYC, function(response) {
+		console.log(response.name);
+
+		var temperature = response.main.temp;
+		var humidity = response.main.humidity;
+		var wind = response.wind.speed;
+
+		console.log(temperature + ", " + humidity + ", " + wind );
+
+		$('#nyc-weather-output')
+			.append('<p>Temperature: ' + temperature + '</p>')
+			.append('<p>Humidity: ' + humidity + '</p>')
+			.append('<p>Wind Speed: ' + wind + '</p>');
+	});
+
+
+//////// 2)
+
+	$('#weather-form').submit(function (event) {
+
+		event.preventDefault();
+		var city = $('#city').val();
+  		var state = $('#state').val();		
+
+  		$.ajax({
+  			url: weatherUrl + city + ',' + state,
+  			type: 'GET',
+  			success: function (response) {
+  				// pipe AJAX reponse to outside function for cleaner code
+  				outputWeather(response);
+  				console.log(response);
+  			},
+  			error: function (xhr) {
+  				console.log(xhr);
+  			}
+  		});
+	
+	});
+
+	function outputWeather (response) {
+  		console.log(response);
+
+  		var city = response.name;
+  		var temp = response.main.temp;
+  		var humidity = response.main.humidity;
+  		var wind = response.wind.speed;
+
+  		// change background color
+  		//colorBackground(temp);
+
+
+  		//how to do this when outputting with handlebars instead of jQuery?
+  		///$('#weather-output').empty(); // be sure to clear out any data from previous searches!
+  		
+
+		//handlebars.js
+		var template = Handlebars.compile($('#weather-template').html());
+
+		// create an object to pass into the template; use the variables above
+		var weatherObj = {
+			city: city,
+			temp: temp,
+			humidity: humidity,
+			wind: wind
+		}
+
+		console.log(weatherObj);
+
+		$('#weather-output').append(template(weatherObj));
+  	}
+
+
+  	// Bonus - change background color based on temperature
+  	function colorBackground (temp) {
+  		if (temp > 70) {
+  			$('body').css('background', 'red');
+  		} else {
+  			$('body').css('background', 'blue');
+  		}
+  	}
+
+
+
+
+}); //end ready

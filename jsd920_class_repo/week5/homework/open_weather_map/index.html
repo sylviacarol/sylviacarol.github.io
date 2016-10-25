@@ -11,12 +11,52 @@
 
 	<div>
 		<h2>Current Weather in NYC</h2>
-		<div id="nyc-weather"></div>
+		<div id="nyc-weather-output"></div>
 	</div>
 	<hr>
 
+	<p>Other Cities:</p>
+	<!-- <form class="weather-form" method="post">
+	    <div>
+	        <label for="city">City</label>
+	        <input type="text" id="city" name="city_name" />
+
+	        <label for="state">State</label>
+			<input name="state" type="text" id="state" placeholder="state_name">
+	    </div>
+	   
+	    
+	    <div class="button">
+	        <button type="submit">Submit</button>
+	    </div>
+	</form> -->
+	<form id="weather-form">
+		<h2>Find Weather</h2>
+		<label for="city">City</label>
+		<input name="city" type="text" id="city" placeholder="City">
+		<label for="state">State</label>
+		<input name="state" type="text" id="state" placeholder="State">
+		<button>Go!</button>
+	</form>
+	
+	<div id="weather-output"></div>
+
+	<script id="nyc-weather-template" type="text/x-handlebars-template">
+		<p>Temperature: {{temp}}</p>
+		<p>Humidity: {{humidity}}</p>
+		<p>Wind Speed: {{windSpeed}}</p>
+	</script>
+
+	<script id="weather-template" type="text/x-handlebars-template">
+		<p>City: {{city}}</p>
+		<p>Temperature: {{temp}}</p>
+		<p>Humidity: {{humidity}}</p>
+		<p>Wind Speed: {{wind}}</p>
+	</script>
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   	<script src="main.js" type="text/javascript" charset="utf-8" async defer></script>
-
+  	<script src="handlebars.js"></script>
 </body>
 </html>
