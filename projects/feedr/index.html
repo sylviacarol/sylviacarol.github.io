@@ -47,67 +47,31 @@
         </div>
         <section id="main" class="container">
 
-          <!-- ARTICLE HANDLEBARS TEMPLATE -->
-         <script id="title-template" type="text/x-handlebars-template">
-          //CREATE A HANDLEBARS TEMPLATE BASED ON THIS ARTICLE STRUCTURE 
-        </script>
 
-          <article class="article">
-            <section class="featuredImage">
-              <img src="images/article_placeholder_1.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article>
-
-<!--           <article class="article">
-            <section class="featuredImage">
-              <img src="images/article_placeholder_2.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article> -->
-
-<!--           <article class="article">
-            <section class="featuredImage">
-              <img src="images/article_placeholder_2.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article> -->
-
-<!--           <article class="article">
-            <section class="featuredImage">
-              <img src="images/article_placeholder_1.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article> -->
+        <script id="news-template" type="text/x-handlebars-template">
           
+            {{#each this}}
+
+            <article class="article">
+              <section class="featuredImage">
+                <img src="{{responsive_images.1.image}}" alt="" />
+              </section>
+              <section class="articleContent">
+                  <a href="#"><h3>{{title}}</h3></a>
+                  <h6>{{channel}}</h6>
+              </section>
+              <section class="impressions">
+                {{shares.total}}
+              </section>
+              <div class="clearfix"></div>
+            </article>
+            
+            {{/each}}
+
+        </script>
+        
+        <div id="news-output"></div>
+
         </section>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
