@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './Card.css';
 
 class Card extends Component {
+	createMarkup(content) {
+		return {__html: content};
+	}
 
 	render() {
 		console.log(this.props);
@@ -12,7 +15,7 @@ class Card extends Component {
 		  <div className="Card">
 
 		  <h1>{title}</h1>
-		  <p>{content}</p>
+		  <p dangerouslySetInnerHTML={this.createMarkup(content)} />;
 		  </div>
 		);
 	}
