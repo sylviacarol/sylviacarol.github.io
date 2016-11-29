@@ -9,14 +9,38 @@ class Card extends Component {
 	render() {
 		console.log(this.props);
 		//var title = this.props.post.title;
-		const { title, content } = this.props.post;
+		const { title, content, publishTimeHuman } = this.props.post;
+
+		let { primaryImage }  = this.props.post;
+		
+		let { parentSite }  = this.props.post;
+		let abbreviator = parentSite.title.lastIndexOf("|");	
+		let coSite = parentSite.title.slice(0, abbreviator);
+
+		if (!primaryImage) {
+			primaryImage = '';
+		} else {
+			primaryImage = <img className="article__thumb" role="presentation" src={primaryImage.originalSrc}/> 
+		}
 
 		return (
-		  <div className="Card">
+		<div className="Card">
+			{primaryImage}  
 
-		  <h1>{title}</h1>
-		  <p dangerouslySetInnerHTML={this.createMarkup(content)} />;
-		  </div>
+			<div className="article__meta">
+                <a className="article__site-brand" href={parentSite.url} target="blank">{coSite}</a>
+                <time className="article__timestamp">{publishTimeHuman}</time>
+            </div>
+
+
+			<h3 className="article__headline">{title}</h3>
+
+
+
+			<div className="modal">
+				<p dangerouslySetInnerHTML={this.createMarkup(content)} />;
+			</div>
+		 </div>
 		);
 	}
 }

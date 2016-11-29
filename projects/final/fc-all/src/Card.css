@@ -1,0 +1,37 @@
+.Card {
+	border-bottom: 1px solid gray;
+	padding: 30px 0 40px 0;
+	position: relative;	
+
+}
+
+.Card .modal {
+	display: none;
+}
+
+.Card .article__meta .article__site-brand {
+	padding-right: 10px;
+}
+
+
+.Card .article__meta .article__site-brand,
+.Card .article__meta .article__timestamp{
+	color: #939598;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+.Card .article__headline {
+	padding-top: 10px;
+	font-size: 20px;
+    line-height: 20px;
+    letter-spacing: .03em;
+    word-spacing: .03em;
+    text-transform: none;
+}
+
+.Card .article__thumb {
+	width: 20%;
+	float: left;
+	padding: 4px 20px 0 0;
+}
